@@ -1,7 +1,7 @@
 name: turkish_suffix
-description: "A new Flutter package project."
-version: 0.0.2
-homepage:
+description: "A Dart Package for handling Turkish Suffixes."
+version: 0.1.0
+homepage: https://github.com/sidarpttr/turkish_suffix
 
 environment:
   sdk: ^3.5.3

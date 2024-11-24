@@ -14,18 +14,6 @@ This Dart package provides a set of extensions for handling Turkish suffixes. It
 
 ## Getting started
 
-To start using this package, add it to your `pubspec.yaml` file:
-
-```yaml
-dependencies:
-  turkish_suffix: ^1.0.0
-```
-
-Then run:
-```bash
-  flutter pub gett
-```
-
 ## Usage
 
 You can use The TurkishSuffix widget to automatically apply suffixes to Text widgets:
@@ -35,25 +23,4 @@ You can use The TurkishSuffix widget to automatically apply suffixes to Text wid
 TurkishSuffix(text:Text("sidar"), ek: Ek.AYRILMA, proper_noun: true); //sidar'dan
 TurkishSuffix(text:Text("deneme"), ek: Ek.DAN,); //denemeden
 
-```
-
-You can also use the extensions on String:
-```dart
-  print("git".makeInfinitive());  //  Output: gitmek
-  print("yastık".makePlural());  //  Output: yastıklar
-  print("dolap".makeAccusative());  //  Output: dolabı
-  print("Sidar".makeDative(proper_noun: true)); // Output: Sidar'a
-  print("Sidar".makeGenitive(proper_noun: true)); // Output: Sidar'ın
-  print("Sidar".makeAblative(proper_noun: true)); // Output: Sidar'dan
-  print("Sidar".makeLocative(proper_noun: true)); // Output: Sidar'da
-  print("ülke".possessiveAffix(
-    person: Person.bir,         //  kaçıncı şahıs
-    quantity: Quantity.plural,  //  çoğul mu tekil mi
-  )); // Output: ülkemiz
-    print("ülke".possessiveAffix(
-    person: Person.bir,         //  kaçıncı şahıs
-    quantity: Quantity.singular,  //  çoğul mu tekil mi
-  )); //Output: ülkem
-
-```
-
+````
