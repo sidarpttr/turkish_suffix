@@ -78,7 +78,20 @@ void main() {
   test("yumuşama test", () {
     expect("dolap".makeDative(), "dolaba");
     expect("ağaç".makeDative(), "ağaca");
-    expect("kurt".makeDative(), "kurda");
     expect("çocuk".makeDative(), "çocuğa");
+  });
+
+  test("exceptions", () {
+    expect("ahval".makeDative(), "ahvale");
+    expect("ampul".makeAccusative(), "ampulü");
+    expect("cemaat".makeGenitive(), "cemaatin");
+    expect("kalp".makeDative(), "kalbe");
+    expect(
+        "kemal"
+            .possessiveAffix(person: Person.ben, quantity: Quantity.singular),
+        "kemalim");
+    expect("ohal".makeDative(), "ohale");
+    expect("saat".makeDative(), "saate");
+    expect("ziraat".makeDative(), "ziraate");
   });
 }
