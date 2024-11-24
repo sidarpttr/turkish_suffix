@@ -20,25 +20,45 @@ extension TurkishSuffixExtension on String {
   String __toLower() => replaceAll("I", "ı").replaceAll("İ", "i").toLowerCase();
 
   Map<dynamic, dynamic> __getLastVowel() {
-    String letter = "";
-    String tone = "";
-    int count = 0;
+    Map<dynamic, dynamic> returnData = {"letter": "", "tone": "", "count": 0};
 
     var word = __toLower();
 
     for (var let in word.split("")) {
       if (Constants.FRONT_VOWELS.contains(let)) {
-        count++;
-        letter = let;
-        tone = "front";
+        returnData["count"]++;
+        returnData["letter"] = let;
+        returnData["tone"] = "front";
       } else if (Constants.BACK_VOWELS.contains(let)) {
-        count++;
-        letter = let;
-        tone = "back";
+        returnData["count"]++;
+        returnData["letter"] = let;
+        returnData["tone"] = "back";
       }
     }
 
-    return {"letter": letter, "tone": tone, "count": count};
+    if (Constants.EXCEPTIONS.contains(word)) {
+      if (returnData["letter"] == "o") {
+        returnData = {
+          "letter": "ö",
+          "tone": "back",
+          "count": returnData["count"]
+        };
+      } else if (returnData["letter"] == "a") {
+        returnData = {
+          "letter": "e",
+          "tone": "back",
+          "count": returnData["count"]
+        };
+      } else if (returnData["letter"] == "u") {
+        returnData = {
+          "letter": "ü",
+          "tone": "back",
+          "count": returnData["count"]
+        };
+      }
+    }
+
+    return returnData;
   }
 
   Map<String, dynamic> __getLastLetter() {
@@ -48,7 +68,7 @@ extension TurkishSuffixExtension on String {
       "consonant": false,
       "hard_consonant": false,
       "discontinious_hard_consonant_for_suffix": false,
-      "soften_consonant_for_suffix": false,
+      "soften_consonant_for_suffix": "",
     };
 
     if (word.isEmpty) {
@@ -109,14 +129,12 @@ extension TurkishSuffixExtension on String {
 
       if (proper_noun) word += "'";
 
-      print(lastVowel);
-      print(lastLetter);
-
       if (lastLetter["vowel"]) {
         word += "y";
       } else if (lastLetter["discontinious_hard_consonant_for_suffix"] &&
           !proper_noun) {
-        if (lastVowel["count"] > 1) {
+        if (lastVowel["count"] >= 1 &&
+            (!Constants.EXCEPTIONS.contains(this) || lastVowel["count"] == 1)) {
           word = word.substring(0, word.length - 1) +
               (lastLetter["soften_consonant_for_suffix"]);
         }
@@ -141,11 +159,12 @@ extension TurkishSuffixExtension on String {
       final lastVowel = __getLastVowel();
 
       if (proper_noun) word += "'";
-
       if (lastLetter["vowel"]) {
         word += "y";
-      } else if (lastLetter["discontinious_hard_consonant_for_suffix"]) {
-        if (lastVowel["count"] > 1 && !proper_noun) {
+      } else if (lastVowel["count"] >= 1 &&
+          lastLetter["discontinious_hard_consonant_for_suffix"] &&
+          (!Constants.EXCEPTIONS.contains(this) || lastVowel["count"] == 1)) {
+        if (!proper_noun) {
           word = word.substring(0, word.length - 1) +
               (lastLetter["soften_consonant_for_suffix"]);
         }
@@ -172,7 +191,8 @@ extension TurkishSuffixExtension on String {
       word += "n";
     } else if (lastLetter["discontinious_hard_consonant_for_suffix"] &&
         proper_noun == false) {
-      if (lastVowel["count"] > 1) {
+      if (lastVowel["count"] >= 1 &&
+          (!Constants.EXCEPTIONS.contains(this) || lastVowel["count"] == 1)) {
         word = word.substring(0, word.length - 1) +
             (lastLetter["soften_consonant_for_suffix"]); //ToDo: Check
       }
@@ -193,7 +213,8 @@ extension TurkishSuffixExtension on String {
 
     if (proper_noun) word += "'";
 
-    if (Constants.HARD_CONSONANTS.contains(lastLetter["letter"])) { //TODO: check sido
+    if (Constants.HARD_CONSONANTS.contains(lastLetter["letter"])) {
+      //TODO: check sido
       word += "t";
     } else {
       word += "d";
@@ -243,7 +264,8 @@ extension TurkishSuffixExtension on String {
     if ((person != Person.uc || person != Person.o) &&
         quantity != Quantity.plural) {
       if (lastLetter['discontinious_hard_consonant_for_suffix']) {
-        if (lastVowel['vowel_count'] > 1) {
+        if (lastVowel['count'] >= 1 &&
+            (!Constants.EXCEPTIONS.contains(this) || lastVowel["count"] == 1)) {
           word = word.substring(0, word.length - 1) +
               lastLetter['soften_consonant_for_suffix'];
         }
