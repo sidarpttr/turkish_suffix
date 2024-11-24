@@ -1,17 +1,10 @@
-# Turkish Suffix Extension for Dart 0.0.1
+# Flutter Turkish Suffix Extension
 
 This Dart package provides a set of extensions for handling Turkish suffixes. It includes methods for adding various grammatical suffixes to Turkish words, making it easier to work with Turkish language rules in your Dart applications.
 
 ## Features
 
 ## Getting started
-
-To start using this package, add it to your `pubspec.yaml` file:
-
-````yaml
-dependencies:
-  turkish_suffix: ^0.0.1
-````
 
 ## Usage
 
