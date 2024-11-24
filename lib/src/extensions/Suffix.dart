@@ -1,6 +1,7 @@
-// ignore: file_names
+// ignore_for_file: unused_element, file_names, non_constant_identifier_names
+
 import 'package:turkish_suffix/src/constants/Ekler.dart';
-import 'package:turkish_suffix/src/enums/Ekler.dart';
+import 'package:turkish_suffix/src/enums/Ekler.dart' show Person, Quantity;
 
 extension TurkishSuffixExtension on String {
   String __getLastWord() => toLowerCase().split(" ")[-1];
@@ -214,7 +215,6 @@ extension TurkishSuffixExtension on String {
     if (proper_noun) word += "'";
 
     if (Constants.HARD_CONSONANTS.contains(lastLetter["letter"])) {
-      //TODO: check sido
       word += "t";
     } else {
       word += "d";

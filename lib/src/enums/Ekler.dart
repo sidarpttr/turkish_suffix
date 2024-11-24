@@ -1,4 +1,5 @@
-/// Ekler enum'u, Türkçe dil bilgisi eklerini temsil eder.
+// ignore_for_file: constant_identifier_names, file_names
+
 enum Ek {
   /// Mastar Eki
   MASTAR,
@@ -53,7 +54,6 @@ enum Ek {
   IM
 }
 
-// ignore: unused_field, constant_identifier_names
 enum Person { ben, sen, o, bir, iki, uc }
 
 enum Quantity { singular, plural }

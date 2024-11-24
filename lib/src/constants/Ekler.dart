@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names, file_names
+
 class Constants {
   static const String VOWELS = "aıoöuüei";
   static const String FRONT_VOWELS = "aıou";

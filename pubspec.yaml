@@ -1,6 +1,8 @@
 name: turkish_suffix
-description: "A Dart Package for handling Turkish Suffixes."
-version: 0.1.0
+description: |
+  A Dart package for handling Turkish suffixes. This package provides a set of extensions and widgets for adding various grammatical suffixes to Turkish words, making it easier to work with Turkish language rules in your Dart and Flutter applications.
+
+version: 0.1.2
 homepage: https://github.com/sidarpttr/turkish_suffix
 
 environment:
@@ -20,6 +22,16 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
+
+keywords:
+  - turkish
+  - suffix
+  - language
+  - grammar
+  - language
+  - dart
+  - flutter
+
 flutter:
 
   # To add assets to your package, add an assets section, like this:
