@@ -16,7 +16,7 @@ This Dart package provides a set of extensions for handling Turkish suffixes. It
 To start using this package, add it to your `pubspec.yaml` file:
 ```yaml
 dependencies:
-  turkish_suffix: ^0.1.0
+  turkish_suffix: ^0.1.2
 ```
 Then run:
 ```bash
