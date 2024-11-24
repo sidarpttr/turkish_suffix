@@ -4,7 +4,7 @@ import 'package:turkish_suffix/src/extensions/Suffix.dart';
 import 'package:turkish_suffix/src/models/Hatalar.dart';
 
 class TurkishSuffix extends StatelessWidget {
-  final Text text;
+  final Text? text;
   final Ek ek;
   final bool proper_noun;
   final Person person;
@@ -16,11 +16,17 @@ class TurkishSuffix extends StatelessWidget {
       required this.ek,
       this.person = Person.ben,
       this.quantity = Quantity.plural,
-      this.proper_noun = false});
+      this.proper_noun = false})
+      : assert(text != null, 'Text widget must not be null');
 
   @override
   Widget build(BuildContext context) {
-    String result = "";
+    String result = text!.data ?? "";
+
+    if (result == "") {
+      return Text(result);
+    }
+
     switch (ek) {
       case Ek.MASTAR || Ek.MAK:
         result = result.makeInfinitive();
@@ -62,18 +68,18 @@ class TurkishSuffix extends StatelessWidget {
 
     return Text(
       result,
-      style: text.style,
-      strutStyle: text.strutStyle,
-      textAlign: text.textAlign,
-      textDirection: text.textDirection,
-      locale: text.locale,
-      softWrap: text.softWrap,
-      overflow: text.overflow,
-      textScaleFactor: text.textScaleFactor,
-      maxLines: text.maxLines,
-      semanticsLabel: text.semanticsLabel,
-      textWidthBasis: text.textWidthBasis,
-      textHeightBehavior: text.textHeightBehavior,
+      style: text!.style,
+      strutStyle: text!.strutStyle,
+      textAlign: text!.textAlign,
+      textDirection: text!.textDirection,
+      locale: text!.locale,
+      softWrap: text!.softWrap,
+      overflow: text!.overflow,
+      textScaleFactor: text!.textScaleFactor,
+      maxLines: text!.maxLines,
+      semanticsLabel: text!.semanticsLabel,
+      textWidthBasis: text!.textWidthBasis,
+      textHeightBehavior: text!.textHeightBehavior,
     );
   }
 }
