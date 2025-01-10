@@ -1,25 +1,31 @@
 // ignore_for_file: unused_element, file_names, non_constant_identifier_names
-
 import 'package:turkish_suffix/src/constants/Ekler.dart';
 import 'package:turkish_suffix/src/enums/Ekler.dart' show Person, Quantity;
+import 'package:turkish_suffix/src/utils/NumberUtils.dart';
 
+/// Extension methods for adding Turkish suffixes to strings.
 extension TurkishSuffixExtension on String {
-  String __getLastWord() => toLowerCase().split(" ")[-1];
+  /// Returns the last word in the string.
+  String __getLastWord() => toLowerCase().split(" ").last;
 
+  /// Trims all spaces from the string.
   String __trim() => replaceAll(" ", "");
 
+  /// Returns a list of vowels in the string.
   List<dynamic> __getVowels() {
     var list = [];
-    for (var vovel in Constants.VOWELS.split("")) {
-      if (contains(vovel)) {
-        list.add(vovel);
+    for (var vowel in Constants.VOWELS.split("")) {
+      if (contains(vowel)) {
+        list.add(vowel);
       }
     }
     return list;
   }
 
+  /// Converts the string to lowercase, handling Turkish-specific characters.
   String __toLower() => replaceAll("I", "ı").replaceAll("İ", "i").toLowerCase();
 
+  /// Returns a map containing the last vowel in the string and its properties.
   Map<dynamic, dynamic> __getLastVowel() {
     Map<dynamic, dynamic> returnData = {"letter": "", "tone": "", "count": 0};
 
@@ -62,6 +68,7 @@ extension TurkishSuffixExtension on String {
     return returnData;
   }
 
+  /// Returns a map containing the last letter in the string and its properties.
   Map<String, dynamic> __getLastLetter() {
     String word = __toLower();
     Map<String, dynamic> returnData = {
@@ -106,9 +113,13 @@ extension TurkishSuffixExtension on String {
     return returnData;
   }
 
+  /// Adds the infinitive suffix to the string.
   String makeInfinitive() =>
       __getLastVowel()["tone"] == "front" ? "${this}mak" : "${this}mek";
 
+  /// Adds the plural suffix to the string.
+  ///
+  /// If [proper_noun] is true, an apostrophe is added before the suffix.
   String makePlural({bool proper_noun = false}) {
     String word = this;
     if (proper_noun) {
@@ -119,6 +130,9 @@ extension TurkishSuffixExtension on String {
         : "${word}ler";
   }
 
+  /// Adds the accusative suffix to the string.
+  ///
+  /// If [proper_noun] is true, an apostrophe is added before the suffix.
   String makeAccusative({bool proper_noun = false}) {
     String lowerword = __toLower();
     String word = this;
@@ -147,6 +161,9 @@ extension TurkishSuffixExtension on String {
     return word;
   }
 
+  /// Adds the dative suffix to the string.
+  ///
+  /// If [proper_noun] is true, an apostrophe is added before the suffix.
   String makeDative({bool proper_noun = false}) {
     String word = this;
     String lowerWord = __toLower();
@@ -180,6 +197,9 @@ extension TurkishSuffixExtension on String {
     return word;
   }
 
+  /// Adds the genitive suffix to the string.
+  ///
+  /// If [proper_noun] is true, an apostrophe is added before the suffix.
   String makeGenitive({bool proper_noun = false}) {
     final lastLetter = __getLastLetter();
     final lastVowel = __getLastVowel();
@@ -206,6 +226,9 @@ extension TurkishSuffixExtension on String {
     return word;
   }
 
+  /// Adds the ablative suffix to the string.
+  ///
+  /// If [proper_noun] is true, an apostrophe is added before the suffix.
   String makeAblative({bool proper_noun = false}) {
     final lastLetter = __getLastLetter();
     final lastVowel = __getLastVowel();
@@ -229,6 +252,9 @@ extension TurkishSuffixExtension on String {
     return word;
   }
 
+  /// Adds the locative suffix to the string.
+  ///
+  /// If [proper_noun] is true, an apostrophe is added before the suffix.
   String makeLocative({bool proper_noun = false}) {
     final lastVowel = __getLastVowel();
     final lastLetter = __getLastLetter();
@@ -251,6 +277,11 @@ extension TurkishSuffixExtension on String {
     return word;
   }
 
+  /// Adds the possessive suffix to the string.
+  ///
+  /// [person] specifies the person (first, second, or third).
+  /// [quantity] specifies the quantity (singular or plural).
+  /// If [properNoun] is true, an apostrophe is added before the suffix.
   String possessiveAffix(
       {required Person person,
       required Quantity quantity,
@@ -309,5 +340,27 @@ extension TurkishSuffixExtension on String {
       }
     }
     return word;
+  }
+
+  String applyNumberOrderSuffix({bool writeOut = false}) {
+    int? numberInt = int.tryParse(this);
+    String number = NumberUtils.numberToTurkishString(numberInt!);
+    String ek = "";
+    String template = "_nc_";
+
+    final lastLetter = number.__getLastLetter();
+    final lastVowel = number.__getLastVowel();
+
+    if (lastLetter["vowel"]) {
+      template = template.replaceFirst("_", "");
+    }
+
+    ek =
+        template.replaceAll("_", Constants.MINOR_HARMONY[lastVowel["letter"]]!);
+
+    if(writeOut){
+      return "$number$ek";
+    }
+    return "$this'$ek";
   }
 }

@@ -1,59 +1,85 @@
 // ignore_for_file: constant_identifier_names, file_names
 
+/// Enum representing different types of suffixes in Turkish.
 enum Ek {
-  /// Mastar Eki
+  /// Mastar Eki (Infinitive Suffix)
   MASTAR,
 
-  /// Çoğul Eki
+  /// Çoğul Eki (Plural Suffix)
   COGUL,
 
-  /// Belirtme Eki
+  /// Belirtme Eki (Accusative Suffix)
   BELIRTME,
 
-  /// Yönelme Eki
+  /// Yönelme Eki (Dative Suffix)
   YONELME,
 
-  /// Tamlayan Eki
+  /// Tamlayan Eki (Genitive Suffix)
   TAMLAYAN,
 
-  /// Ayrılma Eki
+  /// Ayrılma Eki (Ablative Suffix)
   AYRILMA,
 
-  /// Bulunma Eki
+  /// Bulunma Eki (Locative Suffix)
   BULUNMA,
 
-  /// İyelik Eki
+  /// İyelik Eki (Possessive Suffix)
   IYELIK,
 
-/////
-  ///
-  /// EKLERİN KENDLİLERİ
-
-  /// Yapım Eki -mak
+  /// Yapım Eki -mak (Infinitive Suffix)
   MAK,
 
-  /// Çoğul Eki -lar
+  /// Çoğul Eki -lar (Plural Suffix)
   LAR,
 
-  /// Belirtme Eki -ı
+  /// Belirtme Eki -ı (Accusative Suffix)
   I,
 
-  /// Yönelme Eki -a
+  /// Yönelme Eki -a (Dative Suffix)
   A,
 
-  /// Tamlayan Eki -nın
+  /// Tamlayan Eki -nın (Genitive Suffix)
   NIN,
 
-  /// Ayrılma Eki -dan
+  /// Ayrılma Eki -dan (Ablative Suffix)
   DAN,
 
-  /// Bulunma Eki -da
+  /// Bulunma Eki -da (Locative Suffix)
   DA,
 
-  /// İyelik Eki -ım
-  IM
+  /// İyelik Eki -ım (Possessive Suffix)
+  IM,
+
+  /// Sıralama Eki (Ordinal Suffix)
+  SIRALAMA
 }
 
-enum Person { ben, sen, o, bir, iki, uc }
+/// Enum representing different persons for possessive suffixes.
+enum Person {
+  /// First person singular (ben)
+  ben,
 
-enum Quantity { singular, plural }
+  /// Second person singular (sen)
+  sen,
+
+  /// Third person singular (o)
+  o,
+
+  /// First person plural (bir)
+  bir,
+
+  /// Second person plural (iki)
+  iki,
+
+  /// Third person plural (uc)
+  uc
+}
+
+/// Enum representing quantity for possessive suffixes.
+enum Quantity {
+  /// Singular quantity
+  singular,
+
+  /// Plural quantity
+  plural
+}

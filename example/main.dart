@@ -9,16 +9,28 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Material App',
+      title: 'Example',
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Material App Bar'),
         ),
-        body: const Center(
-          child: TurkishSuffix(
-            text: Text("Yalova"),
-            ek: Ek.YONELME,
-            proper_noun: true,
+        body: Center(
+          child: Column(
+            children: [
+              const TurkishSuffix(
+                text: Text("Yalova"),
+                ek: Ek.YONELME,
+                proper_noun: true,
+              ),
+              Expanded(
+                child: ListView.builder(
+                    itemCount: 100,
+                    itemBuilder: (context, index) => ListTile(
+                          title:
+                              TurkishSuffix.numberOrder(Text(index.toString())),
+                        )),
+              )
+            ],
           ),
         ),
       ),

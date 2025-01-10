@@ -1,15 +1,32 @@
 // ignore_for_file: constant_identifier_names, file_names
 
+/// A class that contains constants used for handling Turkish suffixes.
 class Constants {
+  /// A string containing all Turkish vowels.
   static const String VOWELS = "aıoöuüei";
+
+  /// A string containing front vowels in Turkish.
   static const String FRONT_VOWELS = "aıou";
+
+  /// A string containing back vowels in Turkish.
   static const String BACK_VOWELS = "eiöü";
+
+  /// A string containing hard consonants in Turkish.
   static const String HARD_CONSONANTS = "fstkçşhp";
+
+  /// A string containing discontinious hard consonants in Turkish.
   static const String DISCONTINIOUS_HARD_CONSONANTS = "pçtk";
+
+  /// A string containing softened versions of discontinious hard consonants.
   static const String SOFTEN_DHC = "bcdğ";
+
+  /// A string containing discontinious hard consonants after suffixes.
   static const String DISCONTINIOUS_HARD_CONSONANTS_AFTER_SUFFIX = "pçk";
+
+  /// A string containing softened versions of discontinious hard consonants after suffixes.
   static const String SOFTEN_DHC_AFTER_SUFFIX = "bcğ";
 
+  /// A map for minor vowel harmony in Turkish.
   static const Map<String, String> MINOR_HARMONY = {
     'a': 'ı',
     'e': 'i',
@@ -21,6 +38,7 @@ class Constants {
     'ü': 'ü'
   };
 
+  /// A map for vowel harmony for present tense suffixes in Turkish.
   static const Map<String, String> HARMONY_FOR_PRESENT_FIRST = {
     'a': 'a',
     'e': 'e',
@@ -32,6 +50,7 @@ class Constants {
     'ü': 'e'
   };
 
+  /// A map for vowel harmony for present tense suffixes in Turkish.
   static const Map<String, String> HARMONY_FOR_PRESENT = {
     'e': 'i',
     'i': 'e',
@@ -43,6 +62,7 @@ class Constants {
     'ı': 'a',
   };
 
+  /// A list of exceptions for Turkish suffix rules.
   static const List<String> EXCEPTIONS = [
     "ahval",
     "akropol",
